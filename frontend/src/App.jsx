@@ -1,13 +1,13 @@
 import React from 'react'
-import Login from './Pages/Login/Login'
-import Register from './Pages/Register/Register.jsx'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
  
  
  const App = () => {
    return (
      <div>
-      
-   <Register/>
+    <Login/>
+    <Register/>
 
      </div>
    )

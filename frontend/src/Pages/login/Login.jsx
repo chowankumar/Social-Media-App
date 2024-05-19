@@ -17,11 +17,11 @@ const Login = () => {
 
                 </div>
                 <div className="right flex-1 p-12 flex flex-col gap-12 justify-center">
-                    <h1 className='text-gray-600 text-[50px]'>Login</h1>
+                    <h1 className='text-[#1f1c4d] text-[50px] font-bold'>Login</h1>
                     <form className='flex flex-col gap-8'>
                          <input className='border-b border-gray-300 pb-4 pt-4' type="text" placeholder='Username'/>
                          <input className='border-b border-gray-300 pb-4 pt-4' type="password" placeholder='Password'/>
-                        <button className='w-1/2 px-4 py-2 border-none bg-[#1f1c4d]   text-white font-bold cursor-pointer'>Login</button>
+                        <button className='w-1/2 px-4 py-2 border-none bg-[#1f1c4d]   text-white font-bold cursor-pointer mt-[12px]'>Login</button>
                     </form>
                 </div>
             </div>
