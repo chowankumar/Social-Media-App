@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const Register = () => {
     return (
@@ -12,8 +13,11 @@ const Register = () => {
                         consequatur.
                     </p>
                     <span className='text-[14px]'>Do you have an account?</span>
-
-                    <button className='w-1/2 px-4 py-2 border-none bg-white text-rebeccapurple font-bold cursor-pointer text-[#1f1c4d]'>Login</button>
+                       
+                       <Link to="/login">
+                       <button className='w-1/2 px-4 py-2 border-none bg-white text-rebeccapurple font-bold cursor-pointer text-[#1f1c4d]'>Login</button>
+                       </Link>
+                   
 
                 </div>
                 <div className="flex-1 p-12 flex flex-col gap-12 justify-center">
@@ -47,7 +51,7 @@ const Register = () => {
                             name="name"
 
                         />
-
+                         
                         <button className='w-1/2 px-4 py-2 border-none bg-[#1f1c4d] text-white font-bold cursor-pointer'> Register</button>
                     </form>
                 </div>
