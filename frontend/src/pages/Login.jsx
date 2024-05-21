@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { AuthContext } from '../context/authContext.jsx';
+import { useContext } from "react";
 
 const Login = () => {
+    const {login} = useContext(AuthContext)
+    const handleLogin =()=>{
+        login();
+    }
+
     return (
         <div className="h-screen bg-[#d2d1e8] flex items-center justify-center" >
             <div className="w-1/2 flex bg-white rounded-lg min-h-[600px] overflow-hidden">
@@ -25,7 +32,7 @@ const Login = () => {
                     <form className='flex flex-col gap-8'>
                          <input className='border-b border-gray-300 pb-4 pt-4' type="text" placeholder='Username'/>
                          <input className='border-b border-gray-300 pb-4 pt-4' type="password" placeholder='Password'/>
-                        <button className='w-1/2 px-4 py-2 border-none bg-[#1f1c4d]   text-white font-bold cursor-pointer mt-[12px]'>Login</button>
+                        <button onClick={handleLogin} className='w-1/2 px-4 py-2 border-none bg-[#1f1c4d]   text-white font-bold cursor-pointer mt-[12px]'>Login</button>
                     </form>
                 </div>
             </div>

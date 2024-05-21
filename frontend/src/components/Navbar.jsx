@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useContext}from 'react'
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
@@ -9,8 +9,11 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { Link } from 'react-router-dom';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
+import { AuthContext } from '../context/authContext';
 
 const Navbar = () => {
+
+  const {currentUser} = useContext(AuthContext)
   return (
   <div className="p-2.5 h-20 sticky top-0 z-[999] flex justify-between items-center bg-white border-b shadow-md">
     <div className="left flex gap-8 items-center">
@@ -29,9 +32,9 @@ const Navbar = () => {
       <PersonOutlinedIcon/>
       <EmailOutlinedIcon/>
       <NotificationsOutlinedIcon/>
-      <div className="user flex items-center">
-        <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="" className='w-12' />
-        <span className='text-[20px] font-semibold'>John Doe</span>
+      <div className="user flex gap-2 items-center">
+        <img src={currentUser.ProfilePic} alt="" className='w-12 rounded-full' />
+        <span className='text-[20px] font-semibold'>{currentUser.name}</span>
 
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
@@ -7,13 +7,15 @@ import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Rightbar from './components/Rigthbar.jsx'
 import Leftbar from './components/Leftbar.jsx';
+import { AuthContext } from './context/authContext.jsx';
+ 
 
 
 
 
 const App = () => {
 
-  const currentUser = true
+  const {currentUser} = useContext(AuthContext)
   const Layout = () => {
     return (
       <div>
