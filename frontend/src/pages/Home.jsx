@@ -1,64 +1,11 @@
 import React from 'react'
+import Stroies from '../components/Stroies'
 
 const Home = () => {
   return (
-    <div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-
-
-      <div>home</div>
-      <div>home</div><div>home</div>
-
-      <div>home</div>
-      <div>home</div>
-
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-
-      <div>home</div>
-      <div>home</div>
-      <div>home</div><div>home</div>
-      <div>home</div>
-    </div>
+     <div>
+      <Stroies/>
+     </div>
   )
 }
 

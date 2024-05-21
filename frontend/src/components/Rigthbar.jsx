@@ -2,10 +2,10 @@ import React from 'react'
 
 const Rigthbar = () => {
   return (
-    <div className='w-[29%]  h-calc-100vh-70px sticky top-[100px] overflow-scroll no-scrollbar'>
+    <div className='w-[29%]  h-calc-100vh-70px sticky top-[100px] pt-4 overflow-scroll no-scrollbar'>
       <div className="container">
 
-        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-[##d3d3d3] shadow-custom p-5 mb-5">
+        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-white shadow-custom p-5 mb-5">
           <span>Suggestions For You</span>
           <div className='flex justify-between'>
             <div className="user flex gap-4 items-center">
@@ -35,7 +35,7 @@ const Rigthbar = () => {
 
 
 
-        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-[##d3d3d3] shadow-custom p-5 mb-5">
+        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-white shadow-custom p-5 mb-5">
 
           <span>Latest Activities</span>
 
@@ -83,7 +83,7 @@ const Rigthbar = () => {
         </div>
 
 
-        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-[##d3d3d3] shadow-custom p-5 mb-5">
+        <div className="card1 flex flex-col gap-7 border-1 border-gray-200 rounded-lg bg-white shadow-custom p-5 mb-5">
 
           <span>Online Friends</span>
 

@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
       setCurrentUser({
         id:1,
         name: "paras ajbani",
-        profilePic: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+        profilePic: "https://tse4.mm.bing.net/th?id=OIP.rKVHomQTwEnGFitIKLDZ1wHaJV&pid=Api&P=0&h=220"
       })
     };
 

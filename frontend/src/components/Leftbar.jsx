@@ -17,11 +17,11 @@ import { AuthContext } from '../context/authContext';
 const Leftbar = () => {
   const {currentUser} = useContext(AuthContext)
   return (
-    <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[100px]  overflow-scroll no-scrollbar">
+    <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[140px]  overflow-scroll no-scrollbar">
 
       <div className="container">
 
-        <div className="flex flex-col justify-start ml-4 gap-5 items-start  bg-white">
+        <div className="flex flex-col justify-start gap-5 items-start pl-4 pt-8 bg-white">
 
           <div className="user flex gap-2 items-center">
             <img src={currentUser.profilePic} alt="" className='w-[37px] h-[30px]' />
