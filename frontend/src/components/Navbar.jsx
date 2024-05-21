@@ -33,7 +33,7 @@ const Navbar = () => {
       <EmailOutlinedIcon/>
       <NotificationsOutlinedIcon/>
       <div className="user flex gap-2 items-center">
-        <img src={currentUser.ProfilePic} alt="" className='w-12 rounded-full' />
+        <img src={currentUser.profilePic} alt="" className='w-12 rounded-full' />
         <span className='text-[20px] font-semibold'>{currentUser.name}</span>
 
       </div>

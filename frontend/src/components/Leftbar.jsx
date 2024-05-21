@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Friends from "../assets/1.png";
 import Groups from "../assets/2.png";
 import Market from "../assets/3.png";
@@ -12,8 +12,10 @@ import Messages from "../assets/10.png";
 import Tutorials from "../assets/11.png";
 import Courses from "../assets/12.png";
 import Fund from "../assets/13.png";
+import { AuthContext } from '../context/authContext';
 
 const Leftbar = () => {
+  const {currentUser} = useContext(AuthContext)
   return (
     <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[100px]  overflow-scroll no-scrollbar">
 
@@ -22,8 +24,8 @@ const Leftbar = () => {
         <div className="flex flex-col justify-start ml-4 gap-5 items-start  bg-white">
 
           <div className="user flex gap-2 items-center">
-            <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="" className='w-[37px] h-[30px]' />
-            <span className='text-[18px] font-semibold'>John Doe</span>
+            <img src={currentUser.profilePic} alt="" className='w-[37px] h-[30px]' />
+            <span className='text-[18px] font-semibold'>{currentUser.name}</span>
           </div>
 
 
