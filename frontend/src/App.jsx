@@ -20,7 +20,7 @@ const App = () => {
         <Navbar />
         <div className='flex'>
           <Leftbar />
-          <div className='flex flex-6'>
+          <div className='w-[50%]'>
             <Outlet />
           </div>
           <Rightbar />

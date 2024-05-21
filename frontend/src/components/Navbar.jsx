@@ -12,7 +12,7 @@ import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 
 const Navbar = () => {
   return (
-  <div className="navbar flex justify-between items-center p-4 border-b shadow-md sticky">
+  <div className="p-2.5 h-20 sticky top-0 z-[999] flex justify-between items-center bg-white border-b shadow-md">
     <div className="left flex gap-8 items-center">
       <Link to='/'>
        <span className='font-bold text-[25px] text-[#00008b]' >Lamasocial</span>

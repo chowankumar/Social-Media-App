@@ -15,11 +15,11 @@ import Fund from "../assets/13.png";
 
 const Leftbar = () => {
   return (
-    <div className="leftbar w-[20%] h-screen">
+    <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[100px]  overflow-scroll no-scrollbar">
 
-      <div className="container mt-8">
+      <div className="container">
 
-        <div className="h-screen menu flex flex-col justify-start ml-4 gap-5 items-start  shadow-lg bg-white">
+        <div className="flex flex-col justify-start ml-4 gap-5 items-start  bg-white">
 
           <div className="user flex gap-2 items-center">
             <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="" className='w-[37px] h-[30px]' />
@@ -108,17 +108,17 @@ const Leftbar = () => {
           </div>
 
           <div className='flex gap-3 items-center'>
-            <img src={ Courses} alt="" className='h-[30px] w-[30px]' />
+            <img src={Courses} alt="" className='h-[30px] w-[30px]' />
             <span className='font-semibold text-[18px]'>Courses</span>
 
           </div>
 
 
 
-         
 
-           
- 
+
+
+
 
 
 
