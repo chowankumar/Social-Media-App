@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom"
+import Comment from "../components/Comment"
 
 const Post = ({ post }) => {
+  const [componentOpen,setComponentOpen] = useState(false);
 
-  const like = false;
+  const like = true;
 
   return (
     <div className='post bg-white shadow-custom rounded-[20px] w-[92%] m-auto'>
@@ -36,8 +38,8 @@ const Post = ({ post }) => {
             12 Likes
           </div>
 
-          <div className="item flex items-center gap-1 cursor-pointer text-[14px]">
-             <TextsmsOutlinedIcon/>
+          <div className="item flex items-center gap-1 cursor-pointer text-[14px]" onClick={()=>setComponentOpen(!componentOpen)}>
+             <TextsmsOutlinedIcon />
             12 Comments
           </div>
 
@@ -46,6 +48,9 @@ const Post = ({ post }) => {
             12 Shares
           </div>
         </div>
+        {
+          componentOpen && <Comment/>
+        }
       </div>
     </div>
   )
