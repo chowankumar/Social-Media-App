@@ -17,7 +17,7 @@ import { AuthContext } from '../context/authContext';
 const Leftbar = () => {
   const {currentUser} = useContext(AuthContext)
   return (
-    <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[140px]  overflow-scroll no-scrollbar">
+    <div className="leftbar w-[20%] h-calc-100vh-70px sticky top-[80px]  overflow-scroll no-scrollbar">
 
       <div className="container">
 

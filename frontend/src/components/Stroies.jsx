@@ -32,7 +32,7 @@ const Stroies = () => {
             </div> 
         {
             stories.map(story=>(
-                <div className="story relative">
+                <div className="story relative" key={story.id}>
                     <img src={story.img} alt="" className='h-[280px] w-[180px]  rounded-lg' />
                      <span className='text-white font-bold left-2 bottom-2 absolute'>{story.name}</span>
                 </div>
