@@ -7,7 +7,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom"
 import Comment from "../components/Comment"
 
-const Post = ({ post }) => {
+const Post = ({post}) => {
   const [componentOpen,setComponentOpen] = useState(false);
 
   const like = true;
