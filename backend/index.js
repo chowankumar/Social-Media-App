@@ -10,11 +10,11 @@ const app = express()
 
 app.use(express.json())
 
-app.use("/app/auth",authRoutes)
-app.use("/app/users",userRoutes)
-app.use("/app/posts",postRoutes)
-app.use("/app/comments",commentRoutes)
-app.use("/app/likes",likeRoutes)
+app.use("/api/auth",authRoutes)
+app.use("/api/users",userRoutes)
+app.use("/api/posts",postRoutes)
+app.use("/api/comments",commentRoutes)
+app.use("/api/likes",likeRoutes)
 
 app.listen(8000,()=>{
     console.log("running aplication at PORT 8000")
