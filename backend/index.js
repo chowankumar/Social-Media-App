@@ -1,6 +1,6 @@
 import express from "express"
 import userRoutes from './routes/users.js'
-import authRoutes from './routes/auths.js'
+import authRoutes from './routes/auth.js'
 import postRoutes from './routes/posts.js'
 import commentRoutes from './routes/comments.js'
 import likeRoutes from './routes/likes.js'
@@ -8,7 +8,9 @@ import likeRoutes from './routes/likes.js'
 
 const app = express()
 
-app.use(express.json())
+
+
+app.use(express.json());
 
 app.use("/api/auth",authRoutes)
 app.use("/api/users",userRoutes)
