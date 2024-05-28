@@ -1,33 +1,23 @@
-import React from 'react'
-import Post from './Post'
+import { useQuery } from '@tanstack/react-query';
+import { makeRequest } from '../axios';
 
-const Posts = () => {
-  const posts = [
-    {
-      id:1,
-      name:"Chowan Kumar",
-      userId: 1,
-      profilePic: "https://tse1.mm.bing.net/th?id=OIP.X9gYA6VDsnaSpMqBOWKH5wHaGv&pid=Api&P=0&h=220",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id aliquid officiis veritatis",
-      img: "https://tse4.mm.bing.net/th?id=OIP.NqY3rNMnx2NXYo3KJfg43gAAAA&pid=Api&P=0&h=220"
-    },
-    {
-      id: 2,
-      name:"Bhavish Kumar",
-      userId:1,
-      profilePic: "https://tse1.mm.bing.net/th?id=OIP.X9gYA6VDsnaSpMqBOWKH5wHaGv&pid=Api&P=0&h=220",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Id aliquid officiis veritatis!",
-      img: "https://tse4.mm.bing.net/th?id=OIP.NqY3rNMnx2NXYo3KJfg43gAAAA&pid=Api&P=0&h=220"
-    }
-  ]
+function Posts() {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => makeRequest.get('/posts').then((res) => res.data),
+  });
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  console.log(data);
   return (
-    <div className='posts flex flex-col gap-[50px]'>
-      {posts.map(post => (
-        <Post post={post}/>
-      ))}
+    <div>
+      {/* {data.map((post) => (
+        <div key={post.id}>{post.title}</div>
+      ))} */}
     </div>
-  )
+  );
 }
 
-export default Posts
+export default Posts;
