@@ -17,6 +17,7 @@ import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
 const App = () => {
 
    const queryClient =new QueryClient();
+     
   const {currentUser} = useContext(AuthContext)
   const Layout = () => {
     return (

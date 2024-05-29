@@ -6,6 +6,7 @@ import commentRoutes from './routes/comments.js'
 import likeRoutes from './routes/likes.js'
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import bodyParser from "body-parser"
 
 const app = express()
 
@@ -14,6 +15,10 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
   });
+
+
+app.use(bodyParser.json());
+  
 app.use(express.json());
 
 app.use(
