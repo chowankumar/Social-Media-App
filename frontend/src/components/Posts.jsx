@@ -19,8 +19,11 @@ function Posts() {
   
 
   return (
-    <div className=''>
-      {data.map((post) => (
+    <div className='flex flex-col gap-6'>
+      {
+      error?"something went wrong "
+      : isLoading?"Loading"
+      : data.map((post) => (
         <Post post={post} key={post.id} />
       ))}
     </div>
