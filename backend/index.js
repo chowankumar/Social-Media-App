@@ -5,6 +5,7 @@ import postRoutes from './routes/posts.js'
 import commentRoutes from './routes/comments.js'
 import likeRoutes from './routes/likes.js'
 import cors from "cors"
+import multer from "multer"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 
@@ -31,17 +32,20 @@ app.use(
 
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/tmp/my-uploads')
+      cb(null,'../frontend/public/upload')
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix)
+       cb(null,Date.now() + file.originalname)
     }
   })
   
-
-
 const upload = multer({ storage: storage })
+
+app.post("/api/upload",upload.single("file"),(req,re)=>{
+  const file = req.file;
+  res.status(200).json(file.filename)
+})
+
   
   
 app.use(cookieParser())
