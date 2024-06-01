@@ -1,11 +1,12 @@
- 
+
 import Image from "../../assets/img.png";
 import Map from "../../assets/map.png";
 import Friend from "../../assets/friend.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {makeRequest} from "./../../axios.js"
+import { makeRequest } from "./../../axios.js"
+import axios from "axios";
 const Share = () => {
   const [file, setFile] = useState(null);
   const [desc, setDesc] = useState("");
@@ -14,7 +15,7 @@ const Share = () => {
     try {
       const formData = new FormData();
       formData.append("file",file);
-      const res = await makeRequest.post("/upload", formData);
+      const res = await makeRequest.post("/upload",formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -26,7 +27,7 @@ const Share = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (newPost) => makeRequest.post("/posts", newPost),
+    mutationFn: (newPost) => makeRequest.post("/posts",newPost),
     onSuccess: () => {
       queryClient.invalidateQueries(["posts"]);
     },
@@ -34,9 +35,9 @@ const Share = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    let imgUrl = "";
-    if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img:imgUrl });
+    let imgUrl ="";
+    if(file) imgUrl = await upload();
+    mutation.mutate({ desc, img: imgUrl });
     setDesc("");
     setFile(null);
   };
@@ -46,7 +47,7 @@ const Share = () => {
       <div className="container p-5">
         <div className="top flex items-center justify-between">
           <div className="left flex items-center flex-3">
-            <img src={"/upload/" + currentUser.profilePic} alt="" className="w-10 h-10 rounded-full object-cover"/>
+            <img src={"/upload/" + currentUser.profilePic} alt="" className="w-10 h-10 rounded-full object-cover" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
@@ -61,7 +62,7 @@ const Share = () => {
             )}
           </div>
         </div>
-        <hr className="my-5 border-t border-gray-300"/>
+        <hr className="my-5 border-t border-gray-300" />
         <div className="bottom flex items-center justify-between">
           <div className="left flex items-center gap-5">
             <input
@@ -72,22 +73,22 @@ const Share = () => {
             />
             <label htmlFor="file">
               <div className="item flex items-center gap-2 cursor-pointer">
-                <img src={Image} alt="" className="h-5"/>
+                <img src={Image} alt="" className="h-5" />
                 <span className="text-sm text-gray-500">Add Image</span>
               </div>
             </label>
             <div className="item flex items-center gap-2 cursor-pointer">
-              <img src={Map} alt="" className="h-5"/>
+              <img src={Map} alt="" className="h-5" />
               <span className="text-sm text-gray-500">Add Place</span>
             </div>
             <div className="item flex items-center gap-2 cursor-pointer">
-              <img src={Friend} alt="" className="h-5"/>
+              <img src={Friend} alt="" className="h-5" />
               <span className="text-sm text-gray-500">Tag Friends</span>
             </div>
           </div>
           <div className="right">
-            <button 
-              onClick={handleClick} 
+            <button
+              onClick={handleClick}
               className="border-none px-4 py-2 text-white cursor-pointer bg-blue-600 rounded-md">
               Share
             </button>

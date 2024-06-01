@@ -41,7 +41,7 @@ app.use(
   
 const upload = multer({ storage: storage })
 
-app.post("/api/upload",upload.single("file"),(req,re)=>{
+app.post("/api/upload",upload.single("file"),(req,res)=>{
   const file = req.file;
   res.status(200).json(file.filename)
 })
