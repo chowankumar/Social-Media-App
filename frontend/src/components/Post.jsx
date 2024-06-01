@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -7,13 +7,21 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import moment from 'moment';
+import { makeRequest } from '../axios';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../context/authContext';
 
-const Post = ({post}) => {
+const Post = ({ post }) => {
   const [componentOpen, setComponentOpen] = useState(false);
-  const like = true;
+
+  const { currentUser } = useContext(AuthContext);
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["likes", post.id],
+    queryFn: () => makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
+  });
 
   const handleCommentClick = () => {
-    console.log("Comment section toggled");
     setComponentOpen(!componentOpen);
   };
 
@@ -38,16 +46,28 @@ const Post = ({post}) => {
         </div>
         <div className='lastportion flex gap-4 mt-4 items-center'>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]">
-            {like ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-            12 Likes
+            {isLoading ? (
+              <span>Loading...</span>
+            ) : error ? (
+              <span>Error loading likes</span>
+            ) : (
+              <>
+                {data && data.includes(currentUser.id) ? (
+                  <FavoriteOutlinedIcon className='text-red-700' />
+                ) : (
+                  <FavoriteBorderOutlinedIcon />
+                )}
+                <span>{data ? data.length : 0}</span>
+              </>
+            )}
           </div>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]" onClick={handleCommentClick}>
             <TextsmsOutlinedIcon />
-            12 Comments
+            <span>12 Comments</span>
           </div>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]">
             <ShareOutlinedIcon />
-            12 Shares
+            <span>12 Shares</span>
           </div>
         </div>
         {componentOpen && <Comment postId={post.id} />}
