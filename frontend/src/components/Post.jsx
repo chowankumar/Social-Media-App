@@ -8,10 +8,11 @@ import { Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import moment from 'moment';
 import { makeRequest } from '../axios';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery,useQueryClient,useMutation } from '@tanstack/react-query';
 import { AuthContext } from '../context/authContext';
 
 const Post = ({ post }) => {
+
   const [componentOpen, setComponentOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
@@ -21,10 +22,30 @@ const Post = ({ post }) => {
     queryFn: () => makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
   });
 
+
+
   const handleCommentClick = () => {
     setComponentOpen(!componentOpen);
   };
 
+
+  const queryClient = useQueryClient();
+
+
+  const mutation = useMutation({
+    mutationFn: (liked) => {
+      if(liked) return makeRequest.delete("/likes?postId="+post.id)
+        return makeRequest.post("/likes",{postId:post.id})
+      },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["likes"]);
+    },
+  });
+
+
+  const handleLike=()=>{
+    mutation.mutate(data.includes(currentUser.id))
+  }
   return (
     <div className='post bg-white shadow-custom rounded-[20px] w-[92%] m-auto'>
       <div className="container p-[20px] ">
@@ -53,9 +74,9 @@ const Post = ({ post }) => {
             ) : (
               <>
                 {data && data.includes(currentUser.id) ? (
-                  <FavoriteOutlinedIcon className='text-red-700' />
+                  <FavoriteOutlinedIcon className='text-red-700' onClick={handleLike} />
                 ) : (
-                  <FavoriteBorderOutlinedIcon />
+                  <FavoriteBorderOutlinedIcon  onClick={handleLike} />
                 )}
                 <span>{data ? data.length : 0}</span>
               </>
