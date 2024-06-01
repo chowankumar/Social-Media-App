@@ -17,6 +17,7 @@ export const getPosts = (req, res) => {
       JOIN users AS u ON u.id = p.userId 
       LEFT JOIN relation AS r ON r.followedUserId = p.userId 
       WHERE r.followerUserId = ? OR p.userId = ?
+      ORDER BY p.createdAt DESC
     `;
 
     db.query(q, [userInfo.id, userInfo.id], (err, data) => {
