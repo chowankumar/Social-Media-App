@@ -10,10 +10,12 @@ import moment from 'moment';
 import { makeRequest } from '../axios';
 import { useQuery,useQueryClient,useMutation } from '@tanstack/react-query';
 import { AuthContext } from '../context/authContext';
+import { Button } from '@mui/material';
 
 const Post = ({ post }) => {
 
   const [componentOpen, setComponentOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -42,9 +44,23 @@ const Post = ({ post }) => {
     },
   });
 
-
   const handleLike=()=>{
     mutation.mutate(data.includes(currentUser.id))
+  }
+
+  const deletemutation = useMutation({
+    mutationFn: (postId) => {
+       return makeRequest.delete("/posts/"+postId)
+       
+      },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
+
+  const handleDelete = ()=>{
+
+    deletemutation.mutate(post.id)
   }
   return (
     <div className='post bg-white shadow-custom rounded-[20px] w-[92%] m-auto'>
@@ -59,7 +75,14 @@ const Post = ({ post }) => {
               </div>
             </Link>
           </div>
-          <div className='userInfo-right'><MoreHorizIcon /></div>
+          <div className='userInfo-right'>
+            
+            <MoreHorizIcon onClick={()=>setMenuOpen(!menuOpen)} />
+            {menuOpen && post.userId === currentUser.id && (
+            <button onClick={handleDelete}>delete</button>
+            )}
+
+            </div>
         </div>
         <div className="content">
           <span>{post.desc}</span>

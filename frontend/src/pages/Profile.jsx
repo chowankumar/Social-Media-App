@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import FacebookTwoToneIcon from "@mui/icons-material/FacebookTwoTone";
@@ -13,8 +13,13 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Posts from "../components/Posts";
 import { makeRequest } from '../axios';
 import { AuthContext } from '../context/authContext';
+import Update from '../components/Update';
 
 const Profile = () => {
+
+  const [openUpdate,setOpenUpdate] = useState(false);
+
+
   const { currentUser } = useContext(AuthContext);
   const location = useLocation();
   const userId = parseInt(location.pathname.split("/")[2]);
@@ -55,6 +60,7 @@ const Profile = () => {
   const isFollowing = relationshipData.some(rel => rel.followerUserId === currentUser.id);
 
   return (
+    <>
     <div className='profile'>
       <div className='images p-4'>
         <img src={userData.coverPic} className='w-[100%] h-[350px] rounded-sm relative' alt="Profile background" />
@@ -90,7 +96,7 @@ const Profile = () => {
           </div>
 
           {userId === currentUser.id ? (
-            <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg'>Update</button>
+            <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={()=> setOpenUpdate(true)}>Update</button>
           ) : (
             <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={handleFollow}>
               {isFollowing ? "Following" : "Follow"}
@@ -105,6 +111,8 @@ const Profile = () => {
       </div>
       <Posts userId={userId} />
     </div>
+   {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={userData}/>} 
+    </>
   );
 };
 
