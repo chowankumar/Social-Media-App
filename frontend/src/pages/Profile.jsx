@@ -28,10 +28,21 @@ const Profile = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading profile</div>;
 
+
+  const {data:relationshipData} = useQuery({
+    queryKey: ["relationship"],
+    queryFn: () => makeRequest.get("/relationships/followedUserId=" + userId).then((res) => res.data),
+  });
+
+
+  const handleFollow =()=>{
+    
+  }
+
   return (
     <div className='profile'>
       <div className='images p-4'>
-        <img src="" className='w-[100%] h-[350px] rounded-sm relative' alt="Profile background" />
+        <img src={data.coverPic} className='w-[100%] h-[350px] rounded-sm relative' alt="Profile background" />
         {data && data.profilePic && (
           <img
             src={data.profilePic}
@@ -65,7 +76,7 @@ const Profile = () => {
             </div>
 
            {
-            userId === currentUser.id ? ( <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg'>update</button>): <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg'>Follow</button>
+            userId === currentUser.id ? ( <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg'>update</button>): <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={handleFollow}>Follow</button>
            }
           </div>
         )}

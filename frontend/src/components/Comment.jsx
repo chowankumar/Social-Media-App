@@ -54,7 +54,7 @@ const Comment = ({ postId }) => {
         : data.map((comment) => (
 
             <div className="my-8 flex justify-between gap-5">
-              <img src={comment.profilePic} alt="" />
+              <img src={comment.profilePic} alt="" className='w-[40px] h-[40px] rounded-full' />
 
               <div className="info w-[70%] flex flex-col gap-1 items-start">
                 <span className='font-bold'>{comment.name}</span>
