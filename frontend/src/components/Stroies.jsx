@@ -23,10 +23,11 @@ const Stroies = () => {
     ]
 
     
+    
   return (
     <div className='stories flex gap-4 p-4 overflow-scroll no-scrollbar items-center justify-center'> 
           <div className='story relative'>
-            <img className='h-[280px] w-[180px] rounded-lg' src={currentUser.profilePic} alt="" />
+            <img className='h-[280px] w-[180px] rounded-lg' src={currentUser.profilePic ||"/th.jpeg"} alt="" />
             <span className='text-white font-bold left-2 bottom-2 absolute'>{currentUser.name}</span>
              <button className='absolute bottom-10 left-2 text-white bg-blue-600 border-none rounded-full w-8 h-8 cursor-pointer text-2xl flex items-center justify-center'>+</button>
             </div> 

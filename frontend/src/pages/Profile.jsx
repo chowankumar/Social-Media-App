@@ -61,7 +61,7 @@ const Profile = () => {
 
 
   const defaultCoverPic = 'https://tse4.mm.bing.net/th?id=OIP.KtahHX0mDy-mEQO16gKJdAAAAA&pid=Api&P=0&h=220';
-  const defaultProfilePic = 'https://tse4.mm.bing.net/th?id=OIP.KtahHX0mDy-mEQO16gKJdAAAAA&pid=Api&P=0&h=220';
+  
 
 
   return (
@@ -73,7 +73,7 @@ const Profile = () => {
           alt="Profile background" />
          
           <img
-            src={userData.profilePic || defaultProfilePic}
+            src={userData.profilePic || "/th.jpeg"}
             alt="Profile"
             className='rounded-full absolute top-[350px] m-auto left-12 right-1 w-[200px] h-[200px]'
           />

@@ -42,12 +42,13 @@ const Share = () => {
     setFile(null);
   };
 
+   
   return (
     <div className="share shadow-lg w-[95%] mx-auto bg-white rounded-2xl mb-5">
       <div className="container p-5">
         <div className="top flex items-center justify-between">
           <div className="left flex items-center flex-3">
-            <img src={currentUser.profilePic} alt="" className="w-10 h-10 rounded-full object-cover" />
+            <img src={currentUser.profilePic ||"/th.jpeg"} alt="" className="w-10 h-10 rounded-full object-cover" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}

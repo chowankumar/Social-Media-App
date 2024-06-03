@@ -78,7 +78,7 @@ const Post = ({ post }) => {
       <div className="container p-[20px] ">
         <div className="user flex items-center justify-between">
           <div className='userInfo-left flex gap-3 items-center'>
-            <img src={post.profilePic} alt="" className='w-[40px] h-[40px] rounded-full' />
+            <img src={post.profilePic || "/th.jpeg"} alt="" className='w-[40px] h-[40px] rounded-full' />
             <Link to={`/profile/${post.userId}`}>
               <div className='flex flex-col leading-[20px]'>
                 <span className='font-bold text-[19px]'>{post.name}</span>
