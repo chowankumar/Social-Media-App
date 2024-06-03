@@ -11,6 +11,7 @@ const Register = () => {
   });
 
   const [err, setErr] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -18,18 +19,24 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    setErr(null);
+    setSuccess(null);
 
     try {
       await axios.post('http://localhost:8000/api/auth/register', input);
+      setSuccess('You are registered successfully!');
+      setInput({
+        username: '',
+        email: '',
+        password: '',
+        name: '',
+      });
     } catch (err) {
       if (err.response) {
-        
         setErr(err.response.data);
       } else if (err.request) {
-        
         setErr('No response from server');
       } else {
-        
         setErr('Error: ' + err.message);
       }
     }
@@ -60,6 +67,7 @@ const Register = () => {
               type="text"
               placeholder="Username"
               name="username"
+              value={input.username}
               onChange={handleChange}
             />
             <input
@@ -67,6 +75,7 @@ const Register = () => {
               type="email"
               placeholder="Email"
               name="email"
+              value={input.email}
               onChange={handleChange}
             />
             <input
@@ -74,6 +83,7 @@ const Register = () => {
               type="password"
               placeholder="Password"
               name="password"
+              value={input.password}
               onChange={handleChange}
             />
             <input
@@ -81,9 +91,11 @@ const Register = () => {
               type="text"
               placeholder="Name"
               name="name"
+              value={input.name}
               onChange={handleChange}
             />
             {err && <div className="text-red-500">{err}</div>}
+            {success && <div className="text-green-500">{success}</div>}
             <button
               className="w-1/2 px-4 py-2 border-none bg-[#1f1c4d] text-white font-bold cursor-pointer"
               onClick={handleClick}
