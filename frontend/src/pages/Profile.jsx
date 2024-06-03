@@ -59,18 +59,25 @@ const Profile = () => {
 
   const isFollowing = relationshipData.some(rel => rel.followerUserId === currentUser.id);
 
+
+  const defaultCoverPic = 'https://tse4.mm.bing.net/th?id=OIP.KtahHX0mDy-mEQO16gKJdAAAAA&pid=Api&P=0&h=220';
+  const defaultProfilePic = 'https://tse4.mm.bing.net/th?id=OIP.KtahHX0mDy-mEQO16gKJdAAAAA&pid=Api&P=0&h=220';
+
+
   return (
     <>
     <div className='profile'>
       <div className='images p-4'>
-        <img src={userData.coverPic} className='w-[100%] h-[350px] rounded-lg relative' alt="Profile background" />
-        {userData.profilePic && (
+        <img src={userData.coverPic || defaultCoverPic} 
+         className='w-[100%] h-[350px] rounded-lg relative'
+          alt="Profile background" />
+         
           <img
-            src={userData.profilePic}
+            src={userData.profilePic || defaultProfilePic}
             alt="Profile"
             className='rounded-full absolute top-[350px] m-auto left-12 right-1 w-[200px] h-[200px]'
           />
-        )}
+     
       </div>
 
       <div className="profileInfo flex items-center boxShadow h-[250px] bg-white w-[95%] p-4 rounded-lg m-auto mb-4">
