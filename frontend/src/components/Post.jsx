@@ -8,58 +8,58 @@ import { Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import moment from 'moment';
 import { makeRequest } from '../axios';
-import { useQuery,useQueryClient,useMutation } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { AuthContext } from '../context/authContext';
-import { Button } from '@mui/material';
 
 const Post = ({ post }) => {
-
   const [componentOpen, setComponentOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading: isLoadingLikes, error: errorLikes, data: likesData } = useQuery({
     queryKey: ["likes", post.id],
     queryFn: () => makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
+  });
+
+  const { isLoading: isLoadingComments, error: errorComments, data: commentsData } = useQuery({
+    queryKey: ["comments", post.id],
+    queryFn: () => makeRequest.get("/comments?postId=" + post.id).then((res) => res.data),
   });
 
   const handleCommentClick = () => {
     setComponentOpen(!componentOpen);
   };
 
-
   const queryClient = useQueryClient();
 
-
-  const mutation = useMutation({
+  const likeMutation = useMutation({
     mutationFn: (liked) => {
-      if(liked) return makeRequest.delete("/likes?postId="+post.id)
-        return makeRequest.post("/likes",{postId:post.id})
-      },
+      if (liked) return makeRequest.delete("/likes?postId=" + post.id);
+      return makeRequest.post("/likes", { postId: post.id });
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries(["likes"]);
+      queryClient.invalidateQueries(["likes", post.id]);
     },
   });
 
-  const handleLike=()=>{
-    mutation.mutate(data.includes(currentUser.id))
-  }
+  const handleLike = () => {
+    likeMutation.mutate(likesData.includes(currentUser.id));
+  };
 
-  const deletemutation = useMutation({
+  const deleteMutation = useMutation({
     mutationFn: (postId) => {
-       return makeRequest.delete("/posts/"+postId)
-       
-      },
+      return makeRequest.delete("/posts/" + postId);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries(["posts"]);
     },
   });
 
-  const handleDelete = ()=>{
+  const handleDelete = () => {
+    deleteMutation.mutate(post.id);
+  };
 
-    deletemutation.mutate(post.id)
-  }
   return (
     <div className='post bg-white shadow-custom rounded-[20px] w-[92%] m-auto'>
       <div className="container p-[20px] ">
@@ -74,13 +74,11 @@ const Post = ({ post }) => {
             </Link>
           </div>
           <div className='userInfo-right'>
-            
-            <MoreHorizIcon onClick={()=>setMenuOpen(!menuOpen)} />
+            <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
             {menuOpen && post.userId === currentUser.id && (
-            <button onClick={handleDelete}>delete</button>
+              <button onClick={handleDelete}>delete</button>
             )}
-
-            </div>
+          </div>
         </div>
         <div className="content">
           <span>{post.desc}</span>
@@ -88,24 +86,30 @@ const Post = ({ post }) => {
         </div>
         <div className='lastportion flex gap-4 mt-4 items-center'>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]">
-            {isLoading ? (
+            {isLoadingLikes ? (
               <span>Loading...</span>
-            ) : error ? (
+            ) : errorLikes ? (
               <span>Error loading likes</span>
             ) : (
               <>
-                {data && data.includes(currentUser.id) ? (
+                {likesData && likesData.includes(currentUser.id) ? (
                   <FavoriteOutlinedIcon className='text-red-700' onClick={handleLike} />
                 ) : (
-                  <FavoriteBorderOutlinedIcon  onClick={handleLike} />
+                  <FavoriteBorderOutlinedIcon onClick={handleLike} />
                 )}
-                <span>{data ? data.length : 0}</span>
+                <span>{likesData ? likesData.length : 0}</span>
               </>
             )}
           </div>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]" onClick={handleCommentClick}>
             <TextsmsOutlinedIcon />
-            <span>12 Comments</span>
+            {isLoadingComments ? (
+              <span>Loading...</span>
+            ) : errorComments ? (
+              <span>Error loading comments</span>
+            ) : (
+              <span>{commentsData ? commentsData.length : 0} Comments</span>
+            )}
           </div>
           <div className="item flex items-center gap-1 cursor-pointer text-[14px]">
             <ShareOutlinedIcon />
