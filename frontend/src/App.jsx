@@ -18,7 +18,8 @@ const App = () => {
 
    const queryClient =new QueryClient();
      
-  const {currentUser} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext);
+
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
@@ -73,7 +74,7 @@ const App = () => {
 
   return (
     <div>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}/>
     </div>
   );
 };

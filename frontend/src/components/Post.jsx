@@ -24,8 +24,6 @@ const Post = ({ post }) => {
     queryFn: () => makeRequest.get("/likes?postId=" + post.id).then((res) => res.data),
   });
 
-
-
   const handleCommentClick = () => {
     setComponentOpen(!componentOpen);
   };

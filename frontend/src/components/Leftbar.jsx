@@ -23,10 +23,7 @@ const Leftbar = () => {
 
         <div className="flex flex-col justify-start gap-5 items-start pl-4 pt-8 bg-white">
 
-          <div className="user flex gap-2 items-center">
-            <img src={currentUser.profilePic} alt="" className='w-[37px] h-[30px]' />
-            <span className='text-[18px] font-semibold'>{currentUser.name}</span>
-          </div>
+           
 
 
           <div className='flex gap-3 items-center'>
