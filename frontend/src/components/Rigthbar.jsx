@@ -13,8 +13,8 @@ const Rigthbar = () => {
               <span className='text-[15px] font-semibold text-black'>John Doe</span>
             </div>
             <div className='flex gap-4'>
-              <button className='bg-blue-500 shadow-md px-1 text-white'>Follow</button>
-              <button className='bg-red-500 shadow-md px-1 text-white'>Dismiss</button>
+              <button className='bg-[#0866ff] shadow-md px-2 rounded text-white'>Follow</button>
+              <button className='bg-red-500 shadow-md px-2 rounded text-white'>Dismiss</button>
             </div>
           </div>
           <div className='flex  justify-between'>
@@ -24,8 +24,8 @@ const Rigthbar = () => {
               <span className='text-[15px] font-semibold text-black'>John Doe</span>
             </div>
             <div className='flex gap-4'>
-              <button className='bg-blue-500 shadow-md px-1 text-white'>Follow</button>
-              <button className='bg-red-500 shadow-md px-1 text-white'>Dismiss</button>
+              <button className='bg-[#0866ff] shadow-md px-2 text-white rounded'>Follow</button>
+              <button className='bg-red-500 shadow-md px-2 text-white rounded'>Dismiss</button>
 
             </div>
           </div>
