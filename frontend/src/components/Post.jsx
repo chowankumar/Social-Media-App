@@ -74,7 +74,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className='post bg-white shadow-custom rounded-[20px] w-[90%] m-auto mb-6'>
+    <div className='post bg-white shadow-custom rounded-[20px] w-[95%] m-auto mb-6'>
       <div className="container p-[20px] ">
         <div className="user flex items-center justify-between">
           <div className='userInfo-left flex gap-3 items-center'>

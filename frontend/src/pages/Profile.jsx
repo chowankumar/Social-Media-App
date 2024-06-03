@@ -63,40 +63,42 @@ const Profile = () => {
     <>
     <div className='profile'>
       <div className='images p-4'>
-        <img src={userData.coverPic} className='w-[100%] h-[350px] rounded-sm relative' alt="Profile background" />
+        <img src={userData.coverPic} className='w-[100%] h-[350px] rounded-lg relative' alt="Profile background" />
         {userData.profilePic && (
           <img
             src={userData.profilePic}
             alt="Profile"
-            className='rounded-full absolute top-[350px] m-auto left-0 right-32 w-[200px] h-[200px]'
+            className='rounded-full absolute top-[350px] m-auto left-12 right-1 w-[200px] h-[200px]'
           />
         )}
       </div>
 
-      <div className="profileInfo flex items-center boxShadow h-[250px] bg-white w-[90%] p-4 rounded-lg m-auto mb-4">
-        <div className="flex-1 flex gap-4">
-          <a href="#"><FacebookTwoToneIcon /></a>
-          <a href="#"><InstagramIcon /></a>
-          <a href="#"><TwitterIcon /></a>
-          <a href="#"><LinkedInIcon /></a>
-          <a href="#"><PinterestIcon /></a>
+      <div className="profileInfo flex items-center boxShadow h-[250px] bg-white w-[95%] p-4 rounded-lg m-auto mb-4">
+
+        <div className="w-[30%] flex items-center justify-center gap-4">
+          <a href="#"><FacebookTwoToneIcon className='text-[#0866ff]' /></a>
+          <a href="#"><InstagramIcon className='text-[#0866ff]' /></a>
+          <a href="#"><TwitterIcon className='text-[#0866ff]'/></a>
+          <a href="#"><LinkedInIcon className='text-[#0866ff]'/></a>
+          
         </div>
 
-        <div className="middle flex-1 flex flex-col gap-4 mt-[80px]">
+        <div className="middle w-[50%] flex flex-col gap-4 mt-[80px]">
           <span className='m-auto font-bold text-[30px]'>{userData.name}</span>
-          <div className='flex justify-between items-center'>
+          <div className='flex justify-around items-center'>
+
             <div className='flex items-center gap-1 text-[15px]'>
-              <PlaceIcon />
+              <PlaceIcon  className='text-[#0866ff]'/>
               <span>{userData.city}</span>
             </div>
             <div className='flex items-center gap-1 text-[15px]'>
-              <LanguageIcon />
+              <LanguageIcon className='text-[#0866ff]' />
               <span>{userData.website}</span>
             </div>
           </div>
 
           {userId === currentUser.id ? (
-            <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={()=> setOpenUpdate(true)}>Update</button>
+            <button className='bg-[#0866ff] font-medium w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={()=> setOpenUpdate(true)}>Update</button>
           ) : (
             <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={handleFollow}>
               {isFollowing ? "Following" : "Follow"}
@@ -104,9 +106,9 @@ const Profile = () => {
           )}
         </div>
 
-        <div className="right flex justify-end flex-1">
-          <a href="#"><EmailOutlinedIcon /></a>
-          <a href="#"><MoreVertIcon /></a>
+        <div className="right flex justify-end w-[20%]">
+          <a href="#"><EmailOutlinedIcon className='text-[#0866ff]' /></a>
+          <a href="#"><MoreVertIcon  className='text-[#0866ff]'/></a>
         </div>
       </div>
       <Posts userId={userId} />
