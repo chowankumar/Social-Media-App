@@ -4,11 +4,18 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useNavigate } from 'react-router-dom';
+ 
 import { AuthContext } from '../context/authContext';
 
 const Navbar = () => {
     const { currentUser,logout } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const handleProfileClick = () => {
+        navigate(`/profile/${currentUser.id}`);
+      };
 
     
 
@@ -22,7 +29,7 @@ const Navbar = () => {
                 
             </div>
             <div className="right flex gap-6 items-center">
-                <PersonOutlinedIcon className='text-[#0866ff] text-[100px] '/>
+                <PersonOutlinedIcon className='text-[#0866ff] text-[100px]' onClick={handleProfileClick}/>
                 <EmailOutlinedIcon className='text-[#0866ff] text-[100px]'/>
                 <NotificationsOutlinedIcon className='text-[#0866ff] text-[100px]'/>
                 <div className="user flex gap-2 items-center">
