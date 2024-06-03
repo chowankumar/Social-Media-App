@@ -74,15 +74,15 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className='post bg-white shadow-custom rounded-[20px] w-[90%] m-auto'>
+    <div className='post bg-white shadow-custom rounded-[20px] w-[90%] m-auto mb-6'>
       <div className="container p-[20px] ">
         <div className="user flex items-center justify-between">
           <div className='userInfo-left flex gap-3 items-center'>
             <img src={post.profilePic} alt="" className='w-[40px] h-[40px] rounded-full' />
             <Link to={`/profile/${post.userId}`}>
               <div className='flex flex-col leading-[20px]'>
-                <span className='font-bold'>{post.name}</span>
-                <span className='text-[12px]'>{moment(post.createdAt).fromNow()}</span>
+                <span className='font-bold text-[19px]'>{post.name}</span>
+                <span className='text-[12px] text-gray-500'>{moment(post.createdAt).fromNow()}</span>
               </div>
             </Link>
           </div>

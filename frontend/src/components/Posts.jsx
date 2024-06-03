@@ -14,7 +14,7 @@ function Posts({userId}) {
    
   
   return (
-    <div className='flex flex-col gap-6'>
+    <div className='flex flex-col gap-2'>
       {
       error?"something went wrong "
       : isLoading?"Loading"
