@@ -29,9 +29,9 @@ const Navbar = () => {
                 
             </div>
             <div className="right flex gap-6 items-center">
-                <PersonOutlinedIcon className='text-[#0866ff] text-[100px]' onClick={handleProfileClick}/>
-                <EmailOutlinedIcon className='text-[#0866ff] text-[100px]'/>
-                <NotificationsOutlinedIcon className='text-[#0866ff] text-[100px]'/>
+                <PersonOutlinedIcon className='text-[#0866ff] text-[100px] cursor-pointer' onClick={handleProfileClick}/>
+                <EmailOutlinedIcon className='text-[#0866ff] text-[100px] cursor-pointer'/>
+                <NotificationsOutlinedIcon className='text-[#0866ff] text-[100px] cursor-pointer'/>
                 <div className="user flex gap-2 items-center">
                     {currentUser && (
                         <>
