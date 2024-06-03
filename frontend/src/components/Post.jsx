@@ -60,6 +60,19 @@ const Post = ({ post }) => {
     deleteMutation.mutate(post.id);
   };
 
+  const deleteCommentMutation = useMutation({
+    mutationFn: (commentId) => {
+      return makeRequest.delete(`/comments?postId=${post.id}&commentId=${commentId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comments", post.id]);
+    },
+  });
+
+  const handleDeleteComment = (commentId) => {
+    deleteCommentMutation.mutate(commentId);
+  };
+
   return (
     <div className='post bg-white shadow-custom rounded-[20px] w-[92%] m-auto'>
       <div className="container p-[20px] ">
@@ -116,7 +129,7 @@ const Post = ({ post }) => {
             <span>12 Shares</span>
           </div>
         </div>
-        {componentOpen && <Comment postId={post.id} />}
+        {componentOpen && <Comment postId={post.id} commentsData={commentsData} handleDeleteComment={handleDeleteComment} currentUser={currentUser} />}
       </div>
     </div>
   );

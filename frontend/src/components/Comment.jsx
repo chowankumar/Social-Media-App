@@ -1,73 +1,63 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from "../context/authContext";
-import { makeRequest } from "./../axios.js";
-import moment from "moment";
-import { useQuery  ,useMutation, useQueryClient } from "@tanstack/react-query";
+import React, { useState } from 'react';
+import moment from 'moment';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { makeRequest } from '../axios';
 
-const Comment = ({ postId }) => {
-
-  const [desc,setDesc] = useState("")
-  const { currentUser } = useContext(AuthContext);
-
-  const { isLoading,error,data } = useQuery({
-    queryKey: ["comments", postId],
-    queryFn: () => makeRequest.get("/comments?postId=" + postId).then((res) => res.data),
-  });
-
-  console.log(data)
+const Comment = ({ postId, commentsData, handleDeleteComment, currentUser }) => {
+  const [newComment, setNewComment] = useState('');
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
-    mutationFn: (newComment) => makeRequest.post("/comments",newComment),
+  const addCommentMutation = useMutation({
+    mutationFn: (newComment) => {
+      return makeRequest.post('/comments', { postId, desc: newComment });
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries(["comments"]);
+      queryClient.invalidateQueries(['comments', postId]);
     },
   });
 
-  const handleClick = async (e) => {
+  const handleAddComment = (e) => {
     e.preventDefault();
-    mutation.mutate({ desc, postId});
-    setDesc("");
-  
+    addCommentMutation.mutate(newComment);
+    setNewComment('');
   };
 
-   
-
   return (
-    <div className='comments'>
-
-      <div className= "write flex gap-4 justify-between mt-4">
-        <img src={currentUser.profilePic} alt="" className='w-[40px] h-[40px] rounded-full' />
-        <input type="text" placeholder='Write a comment' 
-        value={desc}
-        onChange={(e)=> setDesc(e.target.value)}
-        className='w-[80%] bg-transparent' />
-        <button className='bg-blue-500 text-white px-2 font-bold rounded-lg' onClick={handleClick}>Send</button>
-      </div>
-
-
-      {error
-        ? "Something went wrong"
-        : isLoading
-        ? "loading"
-        : data.map((comment) => (
-
-            <div className="my-8 flex justify-between gap-5">
-              <img src={comment.profilePic} alt="" className='w-[40px] h-[40px] rounded-full' />
-
-              <div className="info w-[70%] flex flex-col gap-1 items-start">
-                <span className='font-bold'>{comment.name}</span>
-                <p>{comment.desc}</p>
-              </div>
-
-              <span className="date flex-1 self-center text-gray-500 text-xs">
-                {moment(comment.createdAt).fromNow()}
-              </span>
+    <div className='comments mt-2'>
+      <form onSubmit={handleAddComment} className='mb-4 flex gap-2 items-center'>
+        <input
+          type='text'
+          placeholder='Add a comment...'
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          className='border p-2 w-[80%]'
+        />
+        <button type='submit' className='bg-blue-600 text-white px-2 py-2 rounded-md'>Comment</button>
+      </form>
+      {commentsData.map(comment => (
+        <div key={comment.id} className='comment flex justify-between items-start p-4'>
+          <div className='comment-left flex gap-3'>
+            <img src={comment.profilePic} alt="" className='w-[30px] h-[30px] rounded-full' />
+            <div className='comment-info'>
+              <span className='font-bold'>{comment.username}</span>
+              <span className='text-[12px] block'>{moment(comment.createdAt).fromNow()}</span>
+              <span>{comment.desc}</span>
             </div>
-          ))}
+          </div>
+          <div className='comment-right'>
+            {comment.userId === currentUser.id && (
+              <>
+                
+                <button onClick={() => handleDeleteComment(comment.id)}>delete</button>
+              </>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Comment;
