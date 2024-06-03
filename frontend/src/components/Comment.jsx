@@ -42,7 +42,7 @@ const Comment = ({ postId, commentsData, handleDeleteComment, currentUser }) => 
             <img src={comment.profilePic} alt="" className='w-[30px] h-[30px] rounded-full' />
             <div className='comment-info flex flex-col'>
               <span className='font-bold'>{comment.name}</span>
-              <span className='text-[10px] block'>{moment(comment.createdAt).fromNow()}</span>
+              <span className='text-[11px] text-gray-600 block'>{moment(comment.createdAt).fromNow()}</span>
               <span>{comment.desc}</span>
             </div>
           </div>
@@ -50,7 +50,7 @@ const Comment = ({ postId, commentsData, handleDeleteComment, currentUser }) => 
             {comment.userId === currentUser.id && (
               <>
                 
-                <button onClick={() => handleDeleteComment(comment.id)}>delete</button>
+                <button onClick={() => handleDeleteComment(comment.id)} className='bg-red-500 px-3 py-1 text-white rounded'>delete</button>
               </>
             )}
           </div>
