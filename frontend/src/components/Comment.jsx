@@ -38,11 +38,11 @@ const Comment = ({ postId, commentsData, handleDeleteComment, currentUser }) => 
       </form>
       {commentsData.map(comment => (
         <div key={comment.id} className='comment flex justify-between items-start p-4'>
-          <div className='comment-left flex gap-3'>
+          <div className='comment-left flex gap-2 '>
             <img src={comment.profilePic} alt="" className='w-[30px] h-[30px] rounded-full' />
-            <div className='comment-info'>
-              <span className='font-bold'>{comment.username}</span>
-              <span className='text-[12px] block'>{moment(comment.createdAt).fromNow()}</span>
+            <div className='comment-info flex flex-col'>
+              <span className='font-bold'>{comment.name}</span>
+              <span className='text-[10px] block'>{moment(comment.createdAt).fromNow()}</span>
               <span>{comment.desc}</span>
             </div>
           </div>

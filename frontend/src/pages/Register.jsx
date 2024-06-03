@@ -44,6 +44,7 @@ const Register = () => {
 
   return (
     <div className="h-screen bg-[rgb(193, 190, 255)] flex items-center justify-center bg-[#d2d1e8]">
+
       <div className="w-1/2 flex flex-row-reverse bg-white rounded-lg min-h-[600px] overflow-hidden">
         <div className="flex-1 p-12 flex flex-col gap-8 bg-[#1f1c4d] text-white">
           <h1 className="text-[100px] leading-[100px]">Lama Social.</h1>
@@ -59,6 +60,8 @@ const Register = () => {
             </button>
           </Link>
         </div>
+
+        
         <div className="flex-1 p-12 flex flex-col gap-12 justify-center">
           <h1 className="text-[#1f1c4d] text-[50px] font-bold">Register</h1>
           <form className="flex flex-col gap-8">
