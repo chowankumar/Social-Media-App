@@ -26,11 +26,11 @@ const App = () => {
       <div>
         <Navbar />
         <div className='flex'>
-          <Leftbar />
-          <div className='w-[50%]'>
+          <Leftbar  />
+          <div className='w-[40%]'>
             <Outlet />
           </div>
-          <Rightbar />
+          <Rightbar/>
         </div>
       </div>
       </QueryClientProvider>
