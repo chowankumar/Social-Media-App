@@ -43,30 +43,18 @@ const Register = () => {
   };
 
   return (
-    <div className="h-screen bg-[rgb(193, 190, 255)] flex items-center justify-center bg-[#d2d1e8]">
+    <div className="h-screen bg-[rgb(193, 190, 255)] flex items-center justify-center bg-[#efeded]">
 
       <div className="w-1/2 flex flex-row-reverse bg-white rounded-lg min-h-[600px] overflow-hidden">
-        <div className="flex-1 p-12 flex flex-col gap-8 bg-[#1f1c4d] text-white">
-          <h1 className="text-[100px] leading-[100px]">Lama Social.</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
-          </p>
-          <span className="text-[14px]">Do you have an account?</span>
-          <Link to="/login">
-            <button className="w-1/2 px-4 py-2 border-none bg-white text-rebeccapurple font-bold cursor-pointer text-[#1f1c4d]">
-              Login
-            </button>
-          </Link>
-        </div>
 
-        
+
         <div className="flex-1 p-12 flex flex-col gap-12 justify-center">
-          <h1 className="text-[#1f1c4d] text-[50px] font-bold">Register</h1>
+
+
+          <h1 className="text-[#0866ff] text-[60px] font-bold m-auto">Register</h1>
           <form className="flex flex-col gap-8">
             <input
-              className="border-b border-gray-300 pb-4 pt-4"
+              className="border rounded-lg pl-2 w-[90%] border-gray-300 pb-4 pt-4"
               type="text"
               placeholder="Username"
               name="username"
@@ -74,7 +62,7 @@ const Register = () => {
               onChange={handleChange}
             />
             <input
-              className="border-b border-gray-300 pb-4 pt-4"
+              className="border rounded-lg pl-2 w-[90%] border-gray-300 pb-4 pt-4"
               type="email"
               placeholder="Email"
               name="email"
@@ -82,7 +70,7 @@ const Register = () => {
               onChange={handleChange}
             />
             <input
-              className="border-b border-gray-300 pb-4 pt-4"
+              className="border rounded-lg pl-2 w-[90%] border-gray-300 pb-4 pt-4"
               type="password"
               placeholder="Password"
               name="password"
@@ -90,7 +78,7 @@ const Register = () => {
               onChange={handleChange}
             />
             <input
-              className="border-b border-gray-300 pb-4 pt-4"
+              className="border rounded-lg pl-2 w-[90%] border-gray-300 pb-4 pt-4"
               type="text"
               placeholder="Name"
               name="name"
@@ -100,12 +88,25 @@ const Register = () => {
             {err && <div className="text-red-500">{err}</div>}
             {success && <div className="text-green-500">{success}</div>}
             <button
-              className="w-1/2 px-4 py-2 border-none bg-[#1f1c4d] text-white font-bold cursor-pointer"
+              className="w-[90%] px-4 rounded-lg pb-4 pt-4 text-[20px] border-none bg-[#0866ff] text-white font-bold cursor-pointer"
               onClick={handleClick}
             >
-              Register
+              Create  account
             </button>
+
+
           </form>
+
+          <div className='flex gap-8 items-center justify-center'>
+            <span className="text-[20px]">Do you have an account?</span>
+            <Link to="/login">
+              <button className="w-fit px-8 py-2 rounded border-none text-[20px] bg-[#0866ff] text-rebeccapurple font-bold cursor-pointer text-white">
+                Login
+              </button>
+            </Link>
+          </div>
+
+
         </div>
       </div>
     </div>

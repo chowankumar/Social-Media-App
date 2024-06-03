@@ -60,7 +60,7 @@ const Login = () => {
 
                         {err && <div className="text-red-500">{err}</div>}
 
-                        <button type="submit" className='w-[80%] px-4 py-4 rounded-md border-none bg-[#0866ff] text-white font-bold cursor-pointer mt-[12px]'>Login</button>
+                        <button type="submit" className='w-[80%] px-4 py-4 rounded-md border-none bg-[#0866ff] text-white font-bold cursor-pointer mt-[12px] text-[20px]'>Login</button>
                     </form>
                 </div>
             </div>
