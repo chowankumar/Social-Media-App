@@ -1,73 +1,70 @@
-import React, { useState } from 'react'
-import {makeRequest} from "../axios"
-import {useMutation,useQueryClient} from "@tanstack/react-query"
+import React, { useState } from 'react';
+import { makeRequest } from "../axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+const Update = ({ setOpenUpdate, user }) => {
+  const [cover, setCover] = useState(null);
+  const [profile, setProfile] = useState(null);
 
+  const [texts, setTexts] = useState({
+    name: "",
+    city: "",
+    website: ""
+  });
 
-const Update = ({setOpenUpdate,user}) => {
-    const [cover,setCover] = useState(null)
-    const [profile,setProfile] = useState(null)
-
-    const [texts,setTexts] = useState({
-        name : "",
-        city : "",
-        websites : ""
-    })
-
-    const upload = async (file) => {
-        try {
-          const formData = new FormData();
-          formData.append("file",file);
-          const res = await makeRequest.post("/upload",formData);
-          return res.data;
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-    const handleChange = (e)=>{
-               setTexts((prev)=>({...prev,[e.target.name]:[e.target.value]}))
+  const upload = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await makeRequest.post("/upload", formData);
+      return res.data;
+    } catch (err) {
+      console.log(err);
     }
+  };
 
+  const handleChange = (e) => {
+    setTexts((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
+  const mutation = useMutation({
+    mutationFn: (user) => makeRequest.put("/users", user),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["user"]);
+    },
+  });
 
-    const mutation = useMutation({
-      mutationFn: (user) => makeRequest.post("/users",user),
-      onSuccess: () => {
-        queryClient.invalidateQueries(["user"]);
-      },
-    });
-  
-    const handleClick = async (e) => {
-      e.preventDefault();
-      let coverUrl =user.coverPic;
-      let profileUrl = user.profilePic;
+  const handleClick = async (e) => {
+    e.preventDefault();
+    let coverUrl;
+    let profileUrl;
 
-      coverUrl = cover != null && (await upload(cover));
-      profileUrl = profile !=null && (await upload(profile));
+    coverUrl = cover ? await upload(cover) : user.coverPic;
+    profileUrl = profile ? await upload(profile) : user.profilePic;
 
-      mutation.mutate({...texts,coverUrl, profilePic:profileUrl })
-      setOpenUpdate(false)
-    };
-     
+    mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl });
+    setOpenUpdate(false);
+  };
 
   return (
-    <div className='update absolute top-0 bottom-0 left-0 right-0 m-auto 
-    w-[50%] h-[50%] bg-white z-[999]'>
-        <form action="">
-            <input type="file"   className='border'/>
-            <input type="file"  />
-            <input type="text" name="name"  onChange={handleChange} className='border'/>
-            <input type="text" name="city"  onChange={handleChange} className='border'/>
-            <input type="text" name="website"  onChange={handleChange} className='border'/>
-            <button onClick={handleClick}>Update</button>
-        </form>
+    <div className='update absolute top-0 bottom-0 left-0 right-0 m-auto w-[50%] h-[50%]  bg-[#efeded] z-[999] flex '>
+      
 
-        <button onClick={()=> setOpenUpdate(false)}>X</button>
-        </div>
-  )
-}
+      <form action="" className='flex flex-col items-center justify-center gap-2 mt-6 w-[90%]'>
+        <input type="file"  onChange={e => setCover(e.target.files[0])}  />
+        <input type="file" onChange={e => setProfile(e.target.files[0])} />
+        <input type="text" name="name" onChange={handleChange} className='border w-[60%] p-2 rounded text-black' placeholder='Name' />
+        <input type="text" name="city" onChange={handleChange} className='border w-[60%] p-2 rounded text-black' placeholder='City' />
+        <input type="text" name="website" onChange={handleChange} className='border w-[60%] p-2 rounded text-black'  placeholder='Website'/>
+        <button onClick={handleClick} className='bg-[#0866ff] px-4 py-1 text-white font-bold rounded'>Update</button>
+      </form>
+      <button onClick={() => setOpenUpdate(false)} className='w-[5%] h-[30px] rounded-full text-white mt-4 bg-red-600'>X</button>
 
-export default Update
+      
+    </div>
+  );
+};
+
+export default Update;

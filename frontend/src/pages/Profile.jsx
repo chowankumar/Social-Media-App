@@ -65,12 +65,12 @@ const Profile = () => {
     <>
       <div className='profile'>
         <div className='images p-4'>
-          <img src={userData.coverPic || defaultCoverPic} 
+          <img src={"/upload/"+userData.coverPic || defaultCoverPic} 
                className='w-[100%] h-[350px] rounded-lg relative'
                alt="Profile background" />
           <img
-            src={userData.profilePic || defaultProfilePic}
-            alt="Profile"
+            src={"/upload/"+userData.profilePic || defaultProfilePic}
+            alt="Profile" 
             className='rounded-full absolute top-[350px] m-auto left-12 right-1 w-[200px] h-[200px]'
           />
         </div>
@@ -100,7 +100,7 @@ const Profile = () => {
               <button className='bg-[#0866ff] font-medium w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={() => setOpenUpdate(true)}>Update</button>
             ) : (
               <button className='bg-blue-700 w-fit py-1 px-3 m-auto text-white rounded-lg' onClick={handleFollow}>
-                {isFollowing ? "Following" : "Follow"}
+                {isFollowing ? "Following":"Follow"}
               </button>
             )}
           </div>
